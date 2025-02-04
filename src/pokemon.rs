@@ -1,10 +1,9 @@
+use crate::assets::get_pokemon_json_string;
 use crate::pokemon_data::PokemonData;
 use crate::pokemon_printer::PokemonPrinter;
 use crate::random::check_shiny_probability;
 use colored::Colorize;
 use std::collections::HashMap;
-use std::fs::File;
-use std::io::BufReader;
 
 pub struct Pokemon {
     pub idx: String,
@@ -15,11 +14,10 @@ pub struct Pokemon {
 
 impl Pokemon {
     pub fn new(idx: &str, is_force_shiny: bool) -> Self {
-        let file = File::open("assets/pokemon.json").expect("Pokemon Data not found.");
-        let reader = BufReader::new(file);
-        let pokemons: HashMap<String, PokemonData> =
-            serde_json::from_reader(reader).expect("Reading Pokemon Data failed.");
-        let pokemon_data = pokemons
+        let data = get_pokemon_json_string();
+        let pokemon_map: HashMap<String, PokemonData> =
+            serde_json::from_str(data.as_str()).expect("Reading Pokemon Data failed.");
+        let pokemon_data = pokemon_map
             .get(idx)
             .expect(format!("Pokemon #{} not found.", idx).as_str());
 
@@ -30,7 +28,7 @@ impl Pokemon {
         };
 
         let image_path = format!(
-            "assets/{}/{}.png",
+            "{}/{}.png",
             if is_shiny { "shiny" } else { "regular" },
             pokemon_data.slug.eng
         );

@@ -1,5 +1,6 @@
+use crate::assets::get_pokemon_image;
 use crossterm::cursor;
-use image::{io::Reader as ImageReader, DynamicImage, GenericImageView, Rgba, RgbaImage};
+use image::{DynamicImage, GenericImageView, Rgba, RgbaImage};
 use viuer::Config;
 
 pub struct PokemonPrinter {
@@ -12,10 +13,7 @@ impl PokemonPrinter {
     }
 
     pub fn print(&self) {
-        let image = ImageReader::open(self.file_path.clone())
-            .expect("Failed to open image file")
-            .decode()
-            .expect("Failed to decode image");
+        let image = get_pokemon_image(self.file_path.as_str());
 
         let (x, y) = cursor::position().expect("Failed to get cursor position");
 

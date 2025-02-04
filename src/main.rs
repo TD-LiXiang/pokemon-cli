@@ -1,4 +1,5 @@
 mod app;
+mod assets;
 mod pokemon;
 mod pokemon_data;
 mod pokemon_printer;
