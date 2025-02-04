@@ -16,9 +16,9 @@ impl App {
 
     pub fn new() -> Self {
         let matches = ClapApp::new("Pokemon CLI")
-            .version("1.0")
-            .author("Xiang Li")
-            .about("Does awesome things")
+            .version(env!("CARGO_PKG_VERSION"))
+            .author(env!("CARGO_PKG_AUTHORS"))
+            .about("Show Pokémon in the terminal")
             .arg(
                 Arg::with_name(App::IDX)
                     .short("i")
