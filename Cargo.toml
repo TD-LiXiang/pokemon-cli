@@ -1,6 +1,6 @@
 [package]
 name = "pokemon"
-version = "0.1.1"
+version = "1.0.0"
 edition = "2021"
 authors = ["Xiang Li <xiang.li@talkdesk.com>"]
 
