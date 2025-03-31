@@ -1,0 +1,25 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build
+        run: cargo build --release --verbose
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2.2.1
+        with:
+          name: Release ${{ github.ref_name }}
+          files: |
+            target/release/pokemon
+          token: ${{ secrets.TOKEN }}
