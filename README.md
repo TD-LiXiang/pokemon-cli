@@ -15,15 +15,12 @@ pokemon -h
 
 Show Pokémon in the terminal
 
-USAGE:
-    pokemon [FLAGS] [OPTIONS]
+Usage: pokemon [OPTIONS]
 
-FLAGS:
-    -h, --help       Prints help information
-    -s, --shiny      Show shiny version
-    -V, --version    Prints version information
-
-OPTIONS:
-    -i, --idx <idx>              Pokemon idx
-    -l, --language <language>    Pokemon name language [default: eng]  [possible values: eng, chs, jpn, jpn_ro]
+Options:
+  -i, --idx <IDX>            Pokemon idx
+  -s, --shiny                Show shiny version
+  -l, --language <LANGUAGE>  Pokemon name language [default: eng] [possible values: eng, chs, jpn, jpn-ro]
+  -h, --help                 Print help
+  -V, --version              Print version
 ```
